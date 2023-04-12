@@ -62,4 +62,4 @@ stages:
               script: |
                 # Modify deployment script based on the app type
                 echo "Starting deployment script run"
-                nohup node index.js > service.log &
+                cd /home/azureuser/dev && whoami && nohup node index.js > service.log &
