@@ -23,6 +23,9 @@ stages:
     - script: |
         npm install
       displayName: 'npm install'
+    - script: |
+        tree
+      displayName: 'tree'
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
