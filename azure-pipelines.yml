@@ -55,4 +55,11 @@ stages:
               script: |
                 # Modify deployment script based on the app type
                 echo "Starting deployment script run"
-                sudo mv '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip' /home/azureuser/dev/file.zip && cd /home/azureuser/dev && unzip -o file.zip && nohup node index.js > service.log &
+                sudo mv '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip' /home/azureuser/dev/file.zip && cd /home/azureuser/dev && unzip -o file.zip
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Modify deployment script based on the app type
+                echo "Starting deployment script run"
+                nohup node index.js > service.log &
