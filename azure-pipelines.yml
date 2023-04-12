@@ -26,12 +26,13 @@ stages:
     - script: |
         tree
       displayName: 'tree'
-    - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
+    - task: ArchiveFiles@2
       inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: 'index.js'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
 - stage: Deployment
@@ -57,4 +58,4 @@ stages:
               script: |
                 # Modify deployment script based on the app type
                 echo "Starting deployment script run"
-                sudo mv '$(Pipeline.Workspace)/drop' /home/azureuser/dev && mkdir '$(Pipeline.Workspace)/drop' && cd /home/azureuser/dev && node index.js &
+                sudo mv '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip' /home/azureuser/dev/file.zip && mkdir '$(Pipeline.Workspace)/drop' && cd /home/azureuser/dev && node index.js &
