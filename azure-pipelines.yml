@@ -58,4 +58,4 @@ stages:
               script: |
                 # Modify deployment script based on the app type
                 echo "Starting deployment script run"
-                sudo mv '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip' /home/azureuser/dev/file.zip && mkdir '$(Pipeline.Workspace)/drop' && cd /home/azureuser/dev && node index.js &
+                sudo mv '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip' /home/azureuser/dev/file.zip && cd /home/azureuser/dev && unzip file.zip && node index.js &
