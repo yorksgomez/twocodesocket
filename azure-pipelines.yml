@@ -23,9 +23,6 @@ stages:
     - script: |
         npm install
       displayName: 'npm install'
-    - script: |
-        tree
-      displayName: 'tree'
     - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
