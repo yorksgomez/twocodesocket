@@ -62,4 +62,4 @@ stages:
               script: |
                 # Modify deployment script based on the app type
                 echo "Starting deployment script run"
-                cd /home/azureuser/dev && whoami && nohup node index.js > service.log &
+                sudo systemctl restart twocodesocket
