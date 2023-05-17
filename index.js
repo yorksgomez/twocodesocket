@@ -12,8 +12,16 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   
-  socket.on('write', (data) => {
-    io.emit("datachange", data);
+  socket.on('write1', (data) => {
+    io.emit("datachange1", data);
+  });
+
+  socket.on('write2', (data) => {
+    io.emit("datachange2", data);
+  });
+
+  socket.on('write3', (data) => {
+    io.emit("datachange3", data);
   });
 
 });
